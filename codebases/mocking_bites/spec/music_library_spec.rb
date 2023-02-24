@@ -13,4 +13,13 @@ RSpec.describe MusicLibrary do
     music_lib.add(track)
     expect(music_lib.all).to include("Harbour Lights" => "The Platters")
   end
+  it "adds two more than one track" do
+    music_lib = MusicLibrary.new
+    track1 = Track.new("Harbour Lights", "The Platters")
+    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    music_lib.add(track1)
+    music_lib.add(track2)
+    expect(music_lib.all).to include("Harbour Lights" => "The Platters")
+    expect(music_lib.all).to include("Lipstick on Your Collar" => "Connie Francis")
+  end
 end
