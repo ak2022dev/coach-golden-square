@@ -3,7 +3,7 @@
 class MusicLibrary
 
   def initialize
-    @tracks = []
+    @tracks = {}
   end
 
   def add(track) # track is an instance of Track
