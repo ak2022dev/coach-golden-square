@@ -7,7 +7,7 @@ RSpec.describe MusicLibrary do
     music_lib = MusicLibrary.new
     expect(music_lib.all).to eq({})
   end
-  xit "adds a track" do
+  it "adds a track" do
     music_lib = MusicLibrary.new
     track = Track.new("Harbour Lights","The Platters")
     music_lib.add(track)

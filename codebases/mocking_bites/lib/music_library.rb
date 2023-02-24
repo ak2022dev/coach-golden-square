@@ -9,6 +9,7 @@ class MusicLibrary
   def add(track) # track is an instance of Track
     # track gets added to the library
     # returns nothing
+    @tracks[track.title] = track.artist
   end
 
   def all
