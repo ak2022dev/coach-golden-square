@@ -3,7 +3,7 @@
 require "music_library"
 
 RSpec.describe MusicLibrary do
-  xit "starts off empty" do
+  it "starts off empty" do
     music_lib = MusicLibrary.new
     expect(music_lib.all).to eq({})
   end
