@@ -6,7 +6,7 @@ class Track
 
   def initialize(title, artist) # title and artist are both strings
     @title = title    # title is a string
-    @artist = artist  # artis is a string
+    @artist = artist  # artist is a string
   end
 
   def matches?(keyword) # keyword is a string
