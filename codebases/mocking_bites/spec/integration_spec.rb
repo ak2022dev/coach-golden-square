@@ -1,4 +1,4 @@
-# file: spec/music_library_spec.rb
+# file: spec/integration_spec.rb
 
 require "music_library"
 
