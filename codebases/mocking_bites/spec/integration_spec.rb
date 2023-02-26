@@ -1,6 +1,8 @@
 # file: spec/integration_spec.rb
 
+require "track"
 require "music_library"
+
 
 RSpec.describe MusicLibrary do
   it "starts off empty" do
