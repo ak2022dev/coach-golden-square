@@ -19,6 +19,14 @@ class MusicLibrary
 
   def search(keyword) # keyword is a string
     # returns a list of tracks that match the keyword
+    matching_tracks = {}
+    @tracks.each do |title,artist|
+      this_track = Track.new(title,artist)
+      if this_track.matches?(keyword)
+        matching_tracks[title] = artist
+      end
+    end
+    return matching_tracks
   end
 
 end
