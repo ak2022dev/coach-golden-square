@@ -32,5 +32,24 @@ RSpec.describe MusicLibrary do
     expect(matches).to include("Harbour Lights" => "The Platters")
     expect(matches).not_to include("Lipstick on Your Collar" => "Connie Francis")
   end
+  it "finds one matching track" do
+    music_lib = MusicLibrary.new
+    track1 = Track.new("Harbour Lights", "The Platters")
+    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    music_lib.add(track1)
+    music_lib.add(track2)
+    matches = music_lib.search("Lipstick")
+    expect(matches).to include("Lipstick on Your Collar" => "Connie Francis")
+    expect(matches).not_to include("Harbour Lights" => "The Platters")
+  end
+  it "reports no matching track" do
+    music_lib = MusicLibrary.new
+    track1 = Track.new("Harbour Lights", "The Platters")
+    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    music_lib.add(track1)
+    music_lib.add(track2)
+    matches = music_lib.search("Heart")
+    expect(matches).to be_empty
+  end
 end
 
