@@ -42,7 +42,7 @@ RSpec.describe MusicLibrary do
     expect(matches).to include("Lipstick on Your Collar" => "Connie Francis")
     expect(matches).not_to include("Harbour Lights" => "The Platters")
   end
-  it "reports no matching track" do
+  it "reports no matching track or artist" do
     music_lib = MusicLibrary.new
     track1 = Track.new("Harbour Lights", "The Platters")
     track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
@@ -74,5 +74,38 @@ RSpec.describe MusicLibrary do
     matches = music_lib.search("Love")
     expect(matches).to include("Love" => "Lana Del Ray")
     expect(matches).to include("Love story" => "Taylor Swift")
+  end
+  it "finds one matching artist" do
+    music_lib = MusicLibrary.new
+    track1 = Track.new("Harbour Lights", "The Platters")
+    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    music_lib.add(track1)
+    music_lib.add(track2)
+    matches = music_lib.search("Platters")
+    expect(matches).to include("Harbour Lights" => "The Platters")
+    expect(matches).not_to include("Lipstick on Your Collar" => "Connie Francis")
+  end
+  it "finds one matching artist" do
+    music_lib = MusicLibrary.new
+    track1 = Track.new("Harbour Lights", "The Platters")
+    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    music_lib.add(track1)
+    music_lib.add(track2)
+    matches = music_lib.search("Connie Francis")
+    expect(matches).not_to include("Harbour Lights" => "The Platters")
+    expect(matches).to include("Lipstick on Your Collar" => "Connie Francis")
+  end
+  it "finds more than one matching artist" do
+    music_lib = MusicLibrary.new
+    track1 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    track2 = Track.new("Heart of Glass", "Blondie")
+    track3 = Track.new("Sunday Girl", "Blondie")
+    music_lib.add(track1)
+    music_lib.add(track2)
+    music_lib.add(track3)
+    matches = music_lib.search("Blondie")
+    expect(matches).to include("Heart of Glass" => "Blondie")
+    expect(matches).to include("Sunday Girl" => "Blondie")
+    expect(matches).not_to include("Lipstick on Your Collar" => "Connie Francis")
   end
 end
