@@ -13,10 +13,10 @@ RSpec.describe MusicLibrary do
     music_lib.add(double(:fake_track, title: "Harbour Lights", artist: "The Platters"))
     expect(music_lib.all).to include("Harbour Lights" => "The Platters")
   end
-  xit "adds more than one track" do
+  it "adds more than one track" do
     music_lib = MusicLibrary.new
-    track1 = Track.new("Harbour Lights", "The Platters")
-    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    track1 = double(:fake_track1, title: "Harbour Lights", artist: "The Platters")
+    track2 = double(:fake_track2, title: "Lipstick on Your Collar", artist: "Connie Francis")
     music_lib.add(track1)
     music_lib.add(track2)
     expect(music_lib.all).to include("Harbour Lights" => "The Platters")
