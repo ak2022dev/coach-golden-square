@@ -27,7 +27,7 @@ RSpec.describe "doubles" do
     fake_object = double(:fake_object)
     expect(fake_object).to receive(:speak).with("Jess").and_return("Meow, Jess")
     # Passes but unsure what expect below is really achieving?
-    
+
     # Don't edit below
     expect(fake_object.speak("Jess")).to eq "Meow, Jess"
     # Don't stub this next one
@@ -35,11 +35,12 @@ RSpec.describe "doubles" do
     expect { fake_object.speak("Ron") }.to raise_error RSpec::Mocks::MockExpectationError
   end
 
-  xit "sets up doubles that expect to be called" do
+  it "sets up doubles that expect to be called" do
     fake_object = double :animal
     # Write an expectation below that the method "speak" is called with
     # the argument "Steve"
-
+    
+    expect(fake_object).to receive(:speak).with("Steve")
     # ...
 
     # Don't edit below
