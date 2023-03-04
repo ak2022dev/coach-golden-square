@@ -6,12 +6,13 @@ require "music_library"
 RSpec.describe MusicLibrary do
   it "starts off empty" do
     music_lib = MusicLibrary.new
-    expect(music_lib.all).to eq({})
+    expect(music_lib.all).to eq([])
   end
   it "adds a track" do
     music_lib = MusicLibrary.new
-    music_lib.add(double(:fake_track, title: "Harbour Lights", artist: "The Platters"))
-    expect(music_lib.all).to include("Harbour Lights" => "The Platters")
+    track = double(:fake_track, title: "Harbour Lights", artist: "The Platters")
+    music_lib.add(track)
+    expect(music_lib.all).to include(track)
   end
   it "adds more than one track" do
     music_lib = MusicLibrary.new
@@ -19,26 +20,33 @@ RSpec.describe MusicLibrary do
     track2 = double(:fake_track2, title: "Lipstick on Your Collar", artist: "Connie Francis")
     music_lib.add(track1)
     music_lib.add(track2)
-    expect(music_lib.all).to include("Harbour Lights" => "The Platters")
-    expect(music_lib.all).to include("Lipstick on Your Collar" => "Connie Francis")
+    expect(music_lib.all).to include(track1)
+    expect(music_lib.all).to include(track2)
   end
-  xit "finds one matching track" do
+  it "finds one matching track" do
     music_lib = MusicLibrary.new
-    track1 = Track.new("Harbour Lights", "The Platters")
-    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    track1 = double(:fake_track1, title: "Harbour Lights", artist: "The Platters")
+    track2 = double(:fake_track2, title: "Lipstick on Your Collar", artist: "Connie Francis")
+    expect(track2).to receive(:matches?).with("Harbour").and_return(false)
+    expect(track1).to receive(:matches?).with("Harbour").and_return(true)
     music_lib.add(track1)
     music_lib.add(track2)
     matches = music_lib.search("Harbour")
-    expect(matches).to include("Harbour Lights" => "The Platters")
-    expect(matches).not_to include("Lipstick on Your Collar" => "Connie Francis")
+    expect(matches).to include(track1)
+    expect(matches).not_to include(track2)
   end
   xit "finds one matching track" do
     music_lib = MusicLibrary.new
-    track1 = Track.new("Harbour Lights", "The Platters")
-    track2 = Track.new("Lipstick on Your Collar", "Connie Francis")
+    track1 = double(:fake_track1, title: "Harbour Lights", artist: "The Platters")
+    track2 = double(:fake_track2, title: "Lipstick on Your Collar", artist: "Connie Francis")
+    expect(track1).to receive(:matches?).with("Lipstick").and_return(false)
+    expect(track2).to receive(:matches?).with("Lipstick").and_return(true)    
     music_lib.add(track1)
+    p "music_lib is #{music_lib}"
     music_lib.add(track2)
+    p "music_lib is #{music_lib}"
     matches = music_lib.search("Lipstick")
+    p "matches is #{matches}"
     expect(matches).to include("Lipstick on Your Collar" => "Connie Francis")
     expect(matches).not_to include("Harbour Lights" => "The Platters")
   end
