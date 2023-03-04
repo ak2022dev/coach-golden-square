@@ -13,6 +13,8 @@ class SecretDiary
     # The diary starts off locked
     if @locked
       raise "Go away!"
+    else
+      return @diary.read
     end
   end
   
@@ -24,5 +26,6 @@ class SecretDiary
   def unlock
     # Unlocks the diary
     # Returns nothing
+    @locked = false
   end
 end
