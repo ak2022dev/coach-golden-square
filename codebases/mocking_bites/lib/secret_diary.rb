@@ -21,6 +21,7 @@ class SecretDiary
   def lock
     # Locks the diary
     # Returns nothing
+    @locked = true
   end
   
   def unlock
