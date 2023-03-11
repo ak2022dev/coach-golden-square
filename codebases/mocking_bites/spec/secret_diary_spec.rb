@@ -1,12 +1,12 @@
 # File spec/secret_diary_spec.rb
 
-require "diary"
 require "secret_diary"
 
 RSpec.describe SecretDiary do
-  xit "initially locks a diary" do
-    diary = Diary.new("My contents")
+  it "initially locks a diary" do
+    diary = double(:fake_diary)
     secret_diary = SecretDiary.new(diary)
+    # below only depends on @lock in secret_diary, not on the double
     expect{secret_diary.read}.to raise_error("Go away!")
   end
   xit "allows reading an unlocked diary" do
