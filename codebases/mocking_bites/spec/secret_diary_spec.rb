@@ -17,8 +17,9 @@ RSpec.describe SecretDiary do
     secret_diary.unlock
     expect(secret_diary.read).to eq("My contents")
   end
-  xit "locks an unlocked diary" do
-    diary = Diary.new("My contents")
+  it "locks an unlocked diary" do
+    diary = double(:fake_diary)
+    # below only depends on @lock in secret_diary, not on the double
     secret_diary = SecretDiary.new(diary)
     secret_diary.unlock
     secret_diary.lock
