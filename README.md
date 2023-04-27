@@ -26,9 +26,8 @@ Do this project solo. It is designed to help you test all of your skills.
 
 [Takeaway Project](projects/README.md)
 
-### Phase Five: Challenge Project
+### Phase Five: Battleships Challenge Project
 
 Optionally, do this extra tricky challenge project designed for engineers who
-reach the end of the sequence and want to really test their skills.
-
-[Battleships Challenge](codebases/battleships)
+reach the end of the sequence and want to really test their skills. I have put
+this in a separate repository.
